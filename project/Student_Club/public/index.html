@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDC Project</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="javascripts/vue.js" defer></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  </head>
+  <body >
+    <div class="nav_bar" id="nav-holder"></div>
+    <script>
+      $.get("nav.html", function(data){
+          $("#nav-holder").replaceWith(data);
+          const vueNav = Vue.createApp({
+              data() {
+                  return {
+                      navItems: [
+                        { text: 'Home', url: 'index.html' },
+                        {text: 'Clubs', url: 'clubs.html' },
+                        { text: 'Events', url: 'events.html'},
+                        { text: 'Admin', url: 'management.html'}
+                      ]
+                  };
+              }
+          }).mount('#nav');
+    });
+    </script>
+
+    <div id="index">
+      <div id="login_btn" v-if="!show_login">
+        <button type="button" id="login-btn" class="btn btn-primary" onclick="vueIndex.show_login=true;">Log In/Sign up</button>
+      </div>
+
+      <div class="scroll_guild" id="scroll_guild">
+
+      </div>
+      <section v-if ="!show_login">
+          <div class = "content">
+              <h2>
+                With more than 130 clubs at the University of Adelaide, there's a crowd for everyone.
+              </h2>
+              <p>
+                You do not need to be on campus to experience club life. Clubs are open to everyone, so you can join and engage with our communities virtually from the comfort of your own lounge room.
+              </p>
+              <p>
+                Whether you're a gamer, an actor, a debater or a dancer; a singer, a writer or simply love yoga. Want to challenge a chess champion or quaff a cab sav; looking to learn a new language or taste a new tea.
+              </p>
+              <p>
+                No matter where you come from or what you're into, the University of Adelaide has a club for you.
+              </p>
+              <p>
+                No matter where you come from or what you're into, the University of Adelaide has a club for you.
+              </p>
+          </div>
+      </section>
+      <div id="sign_up">
+        <div v-if="show_login">
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+            <form id="login-form">
+              <label for="username">Username:&nbsp;</label>
+              <input type="text" name="username" id="username" required>
+              <br><br>
+              <label for="password">Password:&nbsp;</label>
+              <input type="password" name="password" id="password" required>
+              <br><br>
+              <div class="inline-buttons">
+                <button type="submit">Login</button>
+                <button type="submit">Signup</button>
+                <button type="submit" onclick="vueIndex.show_login=false;"> Back</button>
+              </div>
+
+              <p id="error-message"></p>
+            </form>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+        </div>
+      </div>
+
+      <main id="main_page" v-if="!show_login">
+        <div>
+          <div id="clubs_section" class="container" >
+            <section class="club-section">
+              <h2>Dance Club</h2>
+              <a href="dance_club.html" class="thumbnail">
+                <img src="images/DanceClub.png" alt="Dance Club">
+              </a>
+              <p>Description of the dance club.</p>
+            </section>
+            <section class="club-section">
+              <h2>Badminton Club</h2>
+              <a href="#" class="thumbnail">
+                <img src="images/BadmintonClub.png" alt="Badminton Club">
+              </a>
+              <p>Description of the Badminton Club.</p>
+            </section>
+            <section class="club-section">
+              <h2>Vietnamese Club</h2>
+              <a href="#" class="thumbnail">
+                <img src="images/VietnameseClub.png" alt="Vietnamese Club">
+              </a>
+              <p>Description of the Vietnamese club.</p>
+            </section>
+            <a href="clubs.html" class="btn btn-secondary">Explore More</a>
+          </div>
+
+
+
+
+
+          <section id="events_info" class="events">
+            <div class="container-e">
+              <h1>Upcoming Events</h1>
+              <div id="event-div-container" class="event-list">
+                <div id="event-list" v-for="event in events" class="event">
+                  <h2>{{event.name}}</h2>
+                  <p>{{event.date}}</p>
+                  <p>{{event.location}}</p>
+                  <p>{{event.description}}</p>
+                </div>
+
+              </div>
+            </div>
+            <div id="btn">
+              <a href="events.html" class="btn btn-secondary">Explore More</a>
+            </div>
+
+          </section>
+
+        </div>
+
+      </main>
+    </div>
+    <footer id="footer" >
+      <div class="container">
+        <p>&copy; 2023 WDC GROUP</p>
+        <ul id="footers" class="">
+          <li v-for = "footer in footers"><a :href="footer.url"> {{footer.text}}</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </body>
+</html>

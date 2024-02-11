@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDC Project</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <script src="javascripts/vue.js" defer></script>
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- Hold the navigation -->
+    <div class="nav_bar" id="nav-holder"></div>
+    <script>
+      $.get("nav.html", function(data){
+          $("#nav-holder").replaceWith(data);
+          const vueNav = Vue.createApp({
+              data() {
+                  return {
+                      navItems: [
+                        { text: 'Home', url: 'index.html' },
+                        { text: 'Clubs', url: 'clubs.html' },
+                        { text: 'Events', url: 'events.html'}
+                      ],
+                        show_dropdown: false
+                  };
+              }
+          }).mount('#nav');
+    });
+    </script>
+
+
+    <main>
+        <div id="dance_club">
+            <h1>Welcome to the Adelaide University Swing Dancing Club</h1>
+        <p>The Adelaide University Swing Dancing Club (AUSDC) is a student-run club at the University of Adelaide. We aim to promote, teach and have a blast swing dancing.</p>
+        <p>We love to dance and are passionate about making the fun of swing dancing available to everyone. You do not have to be a student at university to join our classes or events!</p>
+
+        <div id="dance-img">
+          <img alt="Dancing!" class="right hfloatwrapper pure-u-xs-hidden" src="images/action.png" />
+        </div>
+        <h1>What is Swing Dancing?</h1>
+        <p>Swing dancing is a fast paced, dynamic dance that originated as a social dance in Harlem, NYC throughout the 1920s - 1950s. It covers both partnered and solo dance styles including Lindy Hop, Charleston, Balboa, Blues, Shag, Tap and Vernacular Jazz.</p>
+        <p>We always acknowledge and honour that these dance styles were created by Black Americans and people of African diasporic descent. We are so passionate about keeping their legacy alive and active today.</p>
+        <p>Swing dancing is danced to jazz music – think Count Basie, Ella Fitzgerald, Billie Holiday and Duke Ellington just to name a few!</p>
+        <p>Check out some awesome videos of swing dancing on YouTube to see more!</p>
+        <p><br />
+        <h1>Learn to Dance!</h1>
+        <p><strong>No Partner Needed. No Experience Required.</strong></p>
+        <p>The AUSDC holds beginner swing dancing classes weekly on campus during the university year. Classes are held on Tuesday nights at 6pm in the Exercise Studio in the Lady Symon Building. Our class content is different each week so you can attend regularly or drop in when it suits you.</p>
+        <p>Our club is targeted at Uni students but is open and welcome to everyone. Anyone can join our classes and events, regardless of dance level, age or experience!</p>
+        <p>Check out our <a href="/classes">Classes page</a> for more information and upcoming classes.</p>
+        <p><br /></p>
+        <h1>Have Some Fun!</h1>
+        <p>The AUSDC hosts several special events throughout the year including movie nights and social dances. Check out our <a href="https://www.facebook.com/AdelaideUniSwingDance/">FaceBook</a> or <a href="https://www.instagram.com/auswingdance/">Instagram</a> to keep up to date.</p>
+        <p><br /></p>
+        <h2>We hope to see you dancing soon!</h2>
+        <h1>Code of Conduct</h1>
+        <p>In general, we are committed to ensuring that all students and teachers feel safe, welcome, accepted and respected at our practices and events—if somebody attending class has made you feel uncomfortable we encourage you to speak to a teacher or a committee member, or contact us via our social media or email after the fact. We attempt to encourage good dance etiquette in terms of communicating properly with partners, appropriate forms of touch while dancing (as dancing can get a bit up close and personal) and listening to teachers. If there's anything we can do better, we'd love to hear it!</p>
+        <p>We acknowledge the Kaurna people, the original custodians of the Adelaide Plains and the land on which the University of Adelaide’s campuses at North Terrace, Waite and Roseworthy are built.</p>
+        </div>
+
+    </main>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer id="footer" >
+        <div class="container">
+          <p>&copy; 2023 WDC GROUP</p>
+          <ul id="footers" class="">
+            <li v-for = "footer in footers"><a :href="footer.url"> {{footer.text}}</a></li>
+          </ul>
+        </div>
+      </footer>
+</body>
+</html>
